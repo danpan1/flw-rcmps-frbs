@@ -3,21 +3,24 @@ import React from 'react';
 import format from 'date-fns/format';
 import { makeArrayOfDates } from '../../utils/makeArrayOfDates';
 import type { IMakeArrayOfDatesProps } from '../../utils/makeArrayOfDates';
+import { Link } from 'react-router-dom';
 
 type Props = {
   ...$Exact<IMakeArrayOfDatesProps>,
-  onClick: (date: number) => void,
 };
 function DateAvailable(props: Props) {
   const { startDay } = props;
-  const { onClick, ...forMakeArray } = props;
   const formattedDate = format(startDay, 'DD MMMM YYYY HH:mm dddd');
-  const dates = makeArrayOfDates(forMakeArray);
+  const dates = makeArrayOfDates(props);
   return (
     <div>
       <div>Date : {formattedDate} </div>
       {dates.map(date => (
-        <div key={date}>{format(date, 'HH:mm')}</div>
+        <div>
+          <Link to={'new/' + date} key={date}>
+            {format(date, 'HH:mm')}
+          </Link>
+        </div>
       ))}
     </div>
   );

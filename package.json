@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "flow-bin": "^0.80.0",
+    "antd": "^3.9.2",
+    "date-fns": "^1.29.0",
+    "firebase": "^5.4.2",
+    "formik": "^1.2.0",
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
     "react-router-dom": "^4.3.1",
@@ -17,8 +20,7 @@
     "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "date-fns": "^1.29.0",
-    "firebase": "^5.4.2",
+    "flow-bin": "^0.80.0",
     "prettier": "^1.14.2"
   }
 }
