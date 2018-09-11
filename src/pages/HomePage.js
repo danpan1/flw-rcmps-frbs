@@ -1,17 +1,14 @@
-// @flow
-
 import React, { Component } from 'react';
+import BookingsService from '../api/bookings-service';
+import DateAvailable from '../components/DateAvailable/DateAvailable';
 import logo from '../assets/logo.svg';
 import './App.css';
-import BookingsService from "../api/bookings-service";
-
-
 
 class HomePage extends Component {
   componentDidMount() {
-    BookingsService.bookings.then(i=>{
-      console.log(i)
-    })
+    BookingsService.bookings.then(i => {
+      console.log(i);
+    });
   }
 
   render() {
@@ -24,6 +21,11 @@ class HomePage extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+        <DateAvailable
+          startDay={new Date()}
+          endTime={'20:00'}
+          startTime={'10:00'}
+        />
       </div>
     );
   }
