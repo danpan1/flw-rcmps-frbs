@@ -3,20 +3,36 @@ import React, { Component } from 'react';
 import format from 'date-fns/format';
 import type { Match } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
+import BookingsService from '../api/BookingsService';
+import type { IBooking } from '../api/BookingsService';
 
 type Props = {|
   match: Match,
 |};
 
 class NewBookingPage extends Component<Props> {
+  handleSubmit = (
+    values: IBooking,
+    { setSubmitting }: { setSubmitting: boolean => void },
+  ) => {
+    BookingsService.book(values).then(() => setSubmitting(false));
+  };
+
   render() {
     const timestamp = +this.props.match.params.date;
     const date = format(new Date(timestamp), 'DD MMMM YYYY HH:mm dddd');
+    const initValues: IBooking = {
+      email: '',
+      name: '',
+      duration: '30',
+      timestamp,
+      date,
+    };
     return (
       <div>
         <h1>NewBookingPage {date}</h1>
         <Formik
-          initialValues={{ email: '', name: '', duration: '30' }}
+          initialValues={initValues}
           validate={values => {
             let errors = {};
             if (!values.email) {
@@ -28,12 +44,7 @@ class NewBookingPage extends Component<Props> {
             }
             return errors;
           }}
-          onSubmit={(values, { setSubmitting }) => {
-            setTimeout(() => {
-              alert(JSON.stringify({ ...values, date }, null, 2));
-              setSubmitting(false);
-            }, 400);
-          }}
+          onSubmit={this.handleSubmit}
         >
           {({ errors, touched, isSubmitting }) => (
             <Form>

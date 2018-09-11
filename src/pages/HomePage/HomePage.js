@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import BookingsService from '../api/bookings-service';
-import DateAvailable from '../components/DateAvailable/DateAvailable';
-import './App.css';
+import BookingsService from '../../api/BookingsService';
+import DateAvailable from '../../components/DateAvailable/DateAvailable';
+import './HomePage.css';
 
 class HomePage extends Component {
   componentDidMount() {
