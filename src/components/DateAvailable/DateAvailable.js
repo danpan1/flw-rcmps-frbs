@@ -5,10 +5,11 @@ import { makeArrayOfDates } from '../../utils/makeArrayOfDates';
 import type { IMakeArrayOfDatesProps } from '../../utils/makeArrayOfDates';
 import { Link } from 'react-router-dom';
 
-type Props = {
-  ...$Exact<IMakeArrayOfDatesProps>,
-};
-function DateAvailable(props: Props) {
+//TODO not working autocomplete for webstorm
+// type Props = {
+//   ...$Exact<IMakeArrayOfDatesProps>,
+// };
+function DateAvailable(props: IMakeArrayOfDatesProps) {
   const { startDay } = props;
   const formattedDate = format(startDay, 'DD MMMM YYYY HH:mm dddd');
   const dates = makeArrayOfDates(props);
@@ -28,9 +29,9 @@ function DateAvailable(props: Props) {
 
 DateAvailable.defaultProps = {
   startDay: new Date(),
-  startTime: '12:00',
+  startTime: '10:00',
   interval: 30,
-  endTime: '15:00',
+  endTime: '20:00',
 };
 
 export default DateAvailable;
