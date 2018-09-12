@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import BookingsService from '../../api/BookingsService';
 import DateAvailable from '../../components/DateAvailable/DateAvailable';
-import './HomePage.css';
 
 class HomePage extends Component<{}> {
   componentDidMount() {

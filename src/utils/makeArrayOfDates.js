@@ -12,7 +12,7 @@ export type IMakeArrayOfDatesProps = {
 const getTimestamp = ({ day, time }: { day: Date, time: string }) => {
   const getReadableDate = format(new Date(day), 'MM.DD.YYYY');
   const setDateTime = parse(getReadableDate + ' ' + time);
-  return setDateTime.getTime();
+  return setDateTime.getTime(); // ?
 };
 
 export const makeArrayOfDates = ({
@@ -22,11 +22,11 @@ export const makeArrayOfDates = ({
   endTime,
 }: IMakeArrayOfDatesProps) => {
   let result = [];
-  let currentTimestamp = getTimestamp({ day: startDay, time: startTime });
-  const endTimestamp = getTimestamp({ day: startDay, time: endTime });
+  let currentTimestamp = getTimestamp({ day: startDay, time: startTime }); // ?
+  const endTimestamp = getTimestamp({ day: startDay, time: endTime }); // ?
   while (currentTimestamp <= endTimestamp) {
-    result.push(currentTimestamp);
-    currentTimestamp = addMinutes(currentTimestamp, interval).getTime();
+    result.push(currentTimestamp); // ?
+    currentTimestamp = addMinutes(currentTimestamp, interval).getTime(); // ?
   }
-  return result;
+  return result; //?
 };
