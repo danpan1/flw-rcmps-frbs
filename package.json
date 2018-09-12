@@ -2,7 +2,7 @@
   "name": "flw-rcmps-frbs",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://danpan1.github.io/flw-rcmps-frbs",
+  "homepage": "http://danpan1.github.io/myapp",
   "dependencies": {
     "antd": "^3.9.2",
     "date-fns": "^1.29.0",
