@@ -18,7 +18,7 @@ class BookingsList extends Component<{}, { data: IBooking[] }> {
       <div>
         <h1>BookingsList</h1>
         {bookings.map(book => (
-          <div>
+          <div key={book.id}>
             <span>{book.date} / </span>
             <span>{book.name} / </span>
             <span>{book.email} / </span>

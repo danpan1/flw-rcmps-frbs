@@ -2,7 +2,7 @@
   "name": "flw-rcmps-frbs",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://danpan1.github.io/myapp",
+  "homepage": "https://danpan1.github.io/flw-rcmps-frbs/",
   "dependencies": {
     "antd": "^3.9.2",
     "date-fns": "^1.29.0",
@@ -12,8 +12,11 @@
     "formik": "^1.2.0",
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
+    "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.5"
+    "react-scripts": "1.1.5",
+    "recompose": "^0.30.0",
+    "redux": "^4.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

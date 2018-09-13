@@ -1,15 +1,9 @@
 // @flow
 import React, { Component } from 'react';
-import BookingsService from '../../api/BookingsService';
-import DateAvailable from '../../components/DateAvailable/DateAvailable';
+import DateAvailable from '../components/DateAvailable/DateAvailable';
+import BookingsList from "./BookingsList";
 
 class HomePage extends Component<{}> {
-  componentDidMount() {
-    BookingsService.bookings.then(i => {
-      console.log(i);
-    });
-  }
-
   render() {
     return (
       <div className="App">
@@ -19,6 +13,9 @@ class HomePage extends Component<{}> {
           endTime="20:00"
           startTime="10:00"
         />
+        <div>
+          <BookingsList />
+        </div>
       </div>
     );
   }

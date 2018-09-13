@@ -10,11 +10,11 @@ import { Link } from 'react-router-dom';
 //   ...$Exact<IMakeArrayOfDatesProps>,
 // };
 function DateAvailable(props: IMakeArrayOfDatesProps) {
+  console.log('DateAvailable');
   const { startDay } = props; /* ? */
-  props
   const formattedDate = format(startDay, 'DD MMMM YYYY HH:mm dddd');
   const dates = makeArrayOfDates(props);
-
+  console.log(dates);
   return (
     <div>
       <div>Date : {formattedDate} </div>
