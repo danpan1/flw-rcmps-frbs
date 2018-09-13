@@ -2,7 +2,7 @@ import {Link} from 'react-router-dom';
 import React from 'react';
 import { connect } from 'react-redux';
 
-export const HOME = 'home';
+export const CALENDAR = 'calendar';
 export const LOGIN = 'login';
 export const NEW = 'new';
 
@@ -12,9 +12,9 @@ const Navigation = ({ authUser }) => (
 
 const NavigationAuth = () => (
   <nav>
-    <Link to={'/' + HOME}>Home</Link>
+    <Link to={'/' + CALENDAR}>CALENDAR</Link>
     <br />
-    <Link to={'/' + LOGIN}>Authorized</Link>
+    <Link to={'/' + LOGIN}>Authorized (go to login)</Link>
     <br />
   </nav>
 );

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import DateAvailable from '../components/DateAvailable/DateAvailable';
 import BookingsList from "./BookingsList";
 
-class HomePage extends Component<{}> {
+class Calendar extends Component<{}> {
   render() {
     return (
       <div className="App">
@@ -21,4 +21,4 @@ class HomePage extends Component<{}> {
   }
 }
 
-export default HomePage;
+export default Calendar;
