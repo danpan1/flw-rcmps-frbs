@@ -10,11 +10,11 @@ const App = () => (
   <div>
     <Navigation />
     <Switch>
-      <Route exact path={'/' + CALENDAR} component={Calendar} />
-      <Route exact path={'/' + LOGIN} component={() => <LoginPage />} />
+      <Route exact path={`/${CALENDAR}`} component={Calendar} />
+      <Route exact path={`/${LOGIN}`} component={() => <LoginPage />} />
       <Route
         exact
-        path={'/' + NEW + '/:date'}
+        path={`/${NEW}/:date`}
         component={props => <NewBookingPage {...props} />}
       />
     </Switch>

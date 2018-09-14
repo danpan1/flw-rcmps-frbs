@@ -11,12 +11,12 @@ import 'firebase/database';
 //   messagingSenderId: YOUR_MESSAGING_SENDER_ID,
 // };
 const config = {
-  apiKey: "AIzaSyAZZRGFnOciwLZsSMjBlilnxfIlPcXXtc4",
-  authDomain: "flw-rcmps-frbs.firebaseapp.com",
-  databaseURL: "https://flw-rcmps-frbs.firebaseio.com",
-  projectId: "flw-rcmps-frbs",
-  storageBucket: "flw-rcmps-frbs.appspot.com",
-  messagingSenderId: "985894078085"
+  apiKey: 'AIzaSyAZZRGFnOciwLZsSMjBlilnxfIlPcXXtc4',
+  authDomain: 'flw-rcmps-frbs.firebaseapp.com',
+  databaseURL: 'https://flw-rcmps-frbs.firebaseio.com',
+  projectId: 'flw-rcmps-frbs',
+  storageBucket: 'flw-rcmps-frbs.appspot.com',
+  messagingSenderId: '985894078085',
 };
 // const devConfig = {
 //   apiKey: YOUR_API_KEY,
@@ -38,7 +38,4 @@ if (!firebase.apps.length) {
 const db = firebase.database();
 const auth = firebase.auth();
 
-export {
-  db,
-  auth,
-};
+export { db, auth };

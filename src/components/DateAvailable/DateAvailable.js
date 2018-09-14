@@ -20,7 +20,7 @@ function DateAvailable(props: IMakeArrayOfDatesProps) {
       <div>Date : {formattedDate} </div>
       {dates.map(date => (
         <div key={date}>
-          <Link to={'new/' + date} key={date}>
+          <Link to={`new/${date}`} key={date}>
             {format(date, 'HH:mm')}
           </Link>
         </div>

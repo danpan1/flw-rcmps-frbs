@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import DateAvailable from '../components/DateAvailable/DateAvailable';
-import BookingsList from "./BookingsList";
+import BookingsList from './BookingsList';
 
 class Calendar extends Component<{}> {
   render() {

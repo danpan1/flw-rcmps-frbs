@@ -35,7 +35,7 @@ class BookingsService {
 
   book(body: IBooking): Promise<void> {
     return new Promise((resolve, reject) => {
-      db.ref(this.ref + '/').push(body, error => {
+      db.ref(`${this.ref}/`).push(body, error => {
         if (error) {
           reject(error);
         } else {

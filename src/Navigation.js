@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import React from 'react';
 import { connect } from 'react-redux';
-import {doSignOut} from "./firebase/auth";
+import { doSignOut } from './firebase/auth';
 
 export const CALENDAR = 'calendar';
 export const LOGIN = 'login';
@@ -13,9 +13,9 @@ const Navigation = ({ authUser }) => (
 
 const NavigationAuth = () => (
   <nav>
-    <Link to={'/' + CALENDAR}>CALENDAR</Link>
+    <Link to={`/${CALENDAR}`}>CALENDAR</Link>
     <br />
-    <Link to={'/' + LOGIN}>Authorized (go to login)</Link>
+    <Link to={`/${LOGIN}`}>Authorized (go to login)</Link>
     <br />
     <button onClick={doSignOut}>Sign Out Google</button>
   </nav>
@@ -23,7 +23,7 @@ const NavigationAuth = () => (
 
 const NavigationNonAuth = () => (
   <nav>
-    <Link to={'/' + LOGIN}>login</Link>
+    <Link to={`/${LOGIN}`}>login</Link>
     <br />
   </nav>
 );

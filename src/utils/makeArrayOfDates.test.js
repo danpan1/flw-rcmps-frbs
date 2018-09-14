@@ -1,6 +1,6 @@
 import React from 'react';
-import {makeArrayOfDates} from './makeArrayOfDates';
-import {defaultProps} from "./dataForTest";
+import { makeArrayOfDates } from './makeArrayOfDates';
+import { defaultProps } from './dataForTest';
 
 // 12:00 - 15:00 with interval of 30 minutes for 09.11.2018
 const arrayOfDates = [
