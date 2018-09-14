@@ -1,6 +1,7 @@
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import React from 'react';
 import { connect } from 'react-redux';
+import {doSignOut} from "./firebase/auth";
 
 export const CALENDAR = 'calendar';
 export const LOGIN = 'login';
@@ -16,6 +17,7 @@ const NavigationAuth = () => (
     <br />
     <Link to={'/' + LOGIN}>Authorized (go to login)</Link>
     <br />
+    <button onClick={doSignOut}>Sign Out Google</button>
   </nav>
 );
 
@@ -26,8 +28,6 @@ const NavigationNonAuth = () => (
   </nav>
 );
 
-const mapStateToProps = state => ({
+export default connect(state => ({
   authUser: state.sessionState.authUser,
-});
-
-export default connect(mapStateToProps)(Navigation);
+}))(Navigation);
