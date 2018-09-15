@@ -1,33 +1,29 @@
-// import React, {Component} from 'react';
-// import {Route} from 'react-router-dom';
-// import {compose} from 'recompose';
-// import withCheckAuthorization from './withCheckAuthorization';
-// // import AccessDeniedPage from '../shared/components/AccessDeniedPage';
-// // import { getRole, isLoggedIn } from './auth.redux';
-//
-// class ProtectedRoute extends Component {
-//   renderRoute = (...args) => {
-//     const AuthorizedComponent = this.props.component;
-//     return <AuthorizedComponent {...args} />;
-//   };
-//
-//   render() {
-//     const { component, ...rest } = this.props;
-//     return <Route {...rest} render={this.renderRoute} />;
-//   }
-// }
-//
-// export default withCheckAuthorization(a => !!a)(ProtectedRoute);
+import React, { Component } from 'react';
+import { Redirect, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { getSessionChecked, selectIsAuthorized } from '../reducks/session';
 
-// import {compose} from "recompose";
-// import {withRouter} from "react-router-dom";
-// import connect from "react-redux/es/connect/connect";
-//
-// const mapStateToProps = state => ({
-//   authUser: state.sessionState.authUser,
-// });
-//
-// return compose(
-//   withRouter,
-//   connect(mapStateToProps),
-// )(WithAuthorization);
+// TODO как здесь добавить типы?
+class ProtectedRoute extends Component {
+  renderRoute = (...args) => {
+    const AuthorizedComponent = this.props.component;
+    if (this.props.sessionChecked === false) {
+      return <div>Checking User authentication data</div>;
+    }
+    if (this.props.isAuthorized) {
+      return <AuthorizedComponent {...args} />;
+    }
+    return <Redirect to="/login" />;
+  };
+
+  render() {
+    const { component, ...rest } = this.props;
+    return <Route {...rest} render={this.renderRoute} />;
+  }
+}
+// TODO  как flow понимает что authUser приходит или надо дублировать руками?
+const mapStateToProps = state => ({
+  isAuthorized: selectIsAuthorized(state),
+  sessionChecked: getSessionChecked(state),
+});
+export default connect(mapStateToProps)(ProtectedRoute);

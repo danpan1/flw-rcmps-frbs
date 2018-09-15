@@ -1,0 +1,14 @@
+.login-form-forgot {
+    float: right;
+}
+.login-form-button {
+    width: 100%;
+}
+.ant-card.LoginPage__card {
+    margin: 0 auto;
+}
+.LoginPage {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}

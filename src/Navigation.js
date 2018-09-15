@@ -1,33 +1,26 @@
 import { Link } from 'react-router-dom';
 import React from 'react';
 import { connect } from 'react-redux';
-import { doSignOut } from './firebase/auth';
+import AuthService from './api/AuthService';
+import { selectIsAuthorized } from './reducks/session';
+import { CALENDAR, LOGIN } from './routes';
 
-export const CALENDAR = 'calendar';
-export const LOGIN = 'login';
-export const NEW = 'new';
-
-const Navigation = ({ authUser }) => (
-  <div>{authUser ? <NavigationAuth /> : <NavigationNonAuth />}</div>
+const Navigation = ({ isAuthorized }) => (
+  <div>{isAuthorized ? <NavigationAuth /> : <NavigationNonAuth />}</div>
 );
 
 const NavigationAuth = () => (
   <nav>
-    <Link to={`/${CALENDAR}`}>CALENDAR</Link>
+    <Link to={CALENDAR}>CALENDAR</Link>
     <br />
-    <Link to={`/${LOGIN}`}>Authorized (go to login)</Link>
+    <Link to={LOGIN}>Authorized (go to login)</Link>
     <br />
-    <button onClick={doSignOut}>Sign Out Google</button>
+    <button onClick={AuthService.signOut}>Sign Out Google</button>
   </nav>
 );
 
-const NavigationNonAuth = () => (
-  <nav>
-    <Link to={`/${LOGIN}`}>login</Link>
-    <br />
-  </nav>
-);
+const NavigationNonAuth = () => <nav />;
 
 export default connect(state => ({
-  authUser: state.sessionState.authUser,
+  isAuthorized: selectIsAuthorized(state),
 }))(Navigation);

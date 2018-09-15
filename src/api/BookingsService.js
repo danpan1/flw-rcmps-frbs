@@ -1,5 +1,5 @@
 // @flow
-import { db } from '../firebase/firebase';
+import { db } from './firebase';
 
 export type IBooking = {
   id?: string,

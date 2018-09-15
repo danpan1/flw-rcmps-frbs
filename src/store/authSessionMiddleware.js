@@ -1,8 +1,11 @@
-import { firebase } from '../firebase';
-import { authUserAC } from '../reducks/session';
+// @flow
 
-export default function authSessionMiddleware(store) {
-  firebase.auth.onAuthStateChanged((authUser = null) => {
+import { authUserAC } from '../reducks/session';
+import AuthService from '../api/AuthService';
+import {Store} from "redux";
+
+export default function authSessionMiddleware(store: Store) {
+  AuthService.onAuthStateChanged((authUser = null) => {
     store.dispatch(authUserAC(authUser));
   });
 }
