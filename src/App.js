@@ -1,6 +1,6 @@
 // @flow
-import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import React from 'react';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
 import Calendar from './pages/Calendar';
 import NewBookingPage from './pages/NewBookingPage';

@@ -1,16 +1,16 @@
 // @flow
-import React, { Component } from 'react';
+import React from 'react';
 import format from 'date-fns/format';
 import type { Match } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import BookingsService from '../api/BookingsService';
 import type { IBooking } from '../api/BookingsService';
 
-type Props = {|
+type Props = {
   match: Match,
-|};
+};
 
-class NewBookingPage extends Component<Props> {
+class NewBookingPage extends React.Component<Props> {
   handleSubmit = (
     values: IBooking,
     { setSubmitting }: { setSubmitting: boolean => void },

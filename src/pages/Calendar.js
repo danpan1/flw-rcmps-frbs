@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import DateAvailable from '../components/DateAvailable/DateAvailable';
 import BookingsList from './BookingsList';
 
-class Calendar extends Component<{}> {
+class Calendar extends React.Component<{}> {
   render() {
     return (
       <div className="App">
