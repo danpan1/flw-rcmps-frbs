@@ -29,17 +29,20 @@ class AuthService {
   static onAuthStateChanged(cb): void {
     auth.onAuthStateChanged(authUser => {
       //AuthUserType || null
-      const user = {
-        displayName: authUser.displayName,
-        email: authUser.email,
-      };
+      let user = null;
+      if (authUser) {
+        user = {
+          displayName: authUser.displayName,
+          email: authUser.email,
+        };
+      }
       // TODO как использовать контракт и как выводить ValidationError
       const validated = authUserValidator.maybe('onAuthStateChanged', user);
-      if (validated instanceof ValidationError) {
-        throw new Error(validated.nested);
-      } else {
-        cb(authUser);
-      }
+      // if (validated instanceof ValidationError) {
+      //   throw new Error(validated.nested);
+      // } else {
+      cb(authUser);
+      // }
     });
   }
 }
