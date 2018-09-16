@@ -1,13 +1,9 @@
-// @flow
-
 import { auth, firebase } from './firebase';
+// import type { AuthUserType } from '../flow-types';
+import { authUserValidator } from '../flow-types';
+import { ValidationError } from 'typed-contracts';
 
-type IAuthUser = {
-  credential: { accessToken: string },
-  // TODO какой объект юзера
-  user: mixed,
-};
-
+type onAuthStateChangedFn = AuthUserType => void;
 // есть ли смысл в папке firebase/auth или тут делать все операции с firebase
 class AuthService {
   static doCreateUserWithEmailAndPassword = (email: string, password: string) =>
@@ -26,36 +22,25 @@ class AuthService {
 
   static signInWithGoogle() {
     const googleProvider = new firebase.auth.GoogleAuthProvider();
-    googleProvider.addScope(
-      'https://www.googleapis.com/auth/contacts.readonly',
-    );
+    googleProvider.addScope('profile');
     return auth.signInWithPopup(googleProvider);
   }
 
-  static onAuthStateChanged(cb: IAuthUser => void): void {
-    return auth.onAuthStateChanged(cb);
+  static onAuthStateChanged(cb): void {
+    auth.onAuthStateChanged(authUser => {
+      //AuthUserType || null
+      const user = {
+        displayName: authUser.displayName,
+        email: authUser.email,
+      };
+      // TODO как использовать контракт и как выводить ValidationError
+      const validated = authUserValidator.maybe('onAuthStateChanged', user);
+      if (validated instanceof ValidationError) {
+        throw new Error(validated.nested);
+      } else {
+        cb(authUser);
+      }
+    });
   }
 }
 export default AuthService;
-
-//   .then(function(result) {
-//     const token = result.credential.accessToken;
-//     var user = result.user;
-//   })
-//   .catch(function(error) {
-//     var errorCode = error.code;
-//     var errorMessage = error.message;
-//     var email = error.email;
-//     // The firebase.auth.AuthCredential type that was used.
-//     var credential = error.credential;
-//     // [START_EXCLUDE]
-//     if (errorCode === 'auth/account-exists-with-different-credential') {
-//       alert(
-//         'You have already signed up with a different auth provider for that email.',
-//       );
-//       // If you are using multiple auth providers on your app you should handle linking
-//       // the user's accounts here.
-//     } else {
-//       console.error(error);
-//     }
-//   });

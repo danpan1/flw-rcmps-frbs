@@ -1,10 +1,15 @@
 import React from 'react';
-import { Form, Icon, Input, Button, Checkbox, Card } from 'antd';
 import AuthService from '../api/AuthService';
 import GoogleButton from 'react-google-button';
 import './LoginPage.css';
 import { CALENDAR } from '../routes';
 import { withRouter } from 'react-router-dom';
+import Card from "antd/es/card";
+import Form from "antd/es/form/Form";
+import Input from "antd/es/input/Input";
+import Icon from "antd/es/icon";
+import Checkbox from "antd/es/checkbox/Checkbox";
+import Button from "antd/es/button/button";
 
 const FormItem = Form.Item;
 

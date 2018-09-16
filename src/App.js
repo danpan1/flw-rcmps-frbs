@@ -1,5 +1,5 @@
 // @flow
-import { Route, Switch, withRouter } from 'react-router-dom';
+import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import React from 'react';
 import LoginPage from './pages/LoginPage';
 import Calendar from './pages/Calendar';
@@ -13,7 +13,7 @@ const App = () => (
     <Navigation />
     <Switch>
       <ProtectedRoute exact path={CALENDAR} component={Calendar} />
-      <Route exact path={LOGIN} component={LoginPage} />
+      <ProtectedRoute exact path={LOGIN} component={LoginPage} isAuthRoute />
       <Route exact path={`${NEW}/:date`} component={NewBookingPage} />
     </Switch>
   </div>
