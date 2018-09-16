@@ -15,6 +15,7 @@ class ProtectedRoute extends Component {
       (this.props.isAuthRoute && !this.props.isAuthorized) ||
       (!this.props.isAuthRoute && this.props.isAuthorized)
     ) {
+      // TODO после ввода логин происходит редирект. этот редирект не совсем очевиден. асинхронно получаетсяч. искать надо почему произошел редирект
       return <Component {...args} />;
     }
 

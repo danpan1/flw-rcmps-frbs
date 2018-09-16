@@ -1,34 +1,57 @@
 // @flow
-import {
-  array,
-  object,
-  string,
-  union,
-  ValidationError,
-} from 'typed-contracts';
+import * as t from 'typed-contracts';
 
-type Person = {
+type Validator<T> = (valueName: string, value: mixed) => t.ValidationError | T;
+type StrictValidator<T> = mixed => T;
+
+function validate<T>(
   name: string,
-  gender: 'm' | 'f',
-  friends: $ReadOnlyArray<Person>,
-  email?: string | $ReadOnlyArray<string>,
-};
+  validator: Validator<T>,
+): StrictValidator<T> {
+  return (value: mixed) => {
+    const validationResult = validator(name, value);
+    if (validationResult instanceof t.ValidationError) {
+      throw validationResult;
+    }
+    return (validationResult: T);
+  };
+}
 
-// person returns Person-compatible value or ValidationError
-export const authUserValidator = object({
-  sss: string,
-  displayName: string,
-  email: string.optional,
-});
-export const authUserValidator2 = string;
-
-export type AuthUserType = {|
-  displayName: ?string,
-  email: string,
-|};
-
-// export type ExtractType<C: Validator<any>> = $Call<
+// type ExtractType<C: Validator<any>> = $Call<
 //   $Call<typeof validate, C>,
 //   mixed,
 //   string,
-// >;
+//   >;
+type ExtractType<C: Validator<any>> = $Call<
+  $Call<typeof validate, string, C>,
+  mixed,
+  string,
+  >;
+// type ExtractType<C: Validator<any>> = $Call<typeof t.object, string, C>;
+export const authUserValidator = t.isObject({
+  displayName: t.string,
+  email: t.string.optional,
+});
+
+export type AuthUserType = ExtractType<typeof authUserValidator>;
+const a: AuthUserType = { g: 2 };
+a.email = { f: 1 };
+
+function getConfig(name: string) {
+  return {
+    name,
+    header: {
+      time: 0,
+    },
+  };
+}
+
+type ConfigType = $Call<typeof getConfig, string>;
+
+const y: ConfigType = {
+  name: '123',
+  header: {
+    time: 1,
+    ll: 2,
+  },
+};
