@@ -22,6 +22,12 @@ function validate<T>(
 //   mixed,
 //   string,
 //   >;
+// amend
+// type ExtractType<C: Validator<any>> = $Call<
+//   $Call<typeof validate, C>,
+//   mixed,
+//   string,
+//   >;
 type ExtractType<C: Validator<any>> = $Call<
   $Call<typeof validate, string, C>,
   mixed,
