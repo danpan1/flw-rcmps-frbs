@@ -6,7 +6,7 @@ import { CALENDAR, LOGIN } from '../routes';
 
 // TODO как здесь добавить типы?
 class ProtectedRoute extends Component {
-  renderRoute = (...args) => {
+  renderRoute = (args) => {
     const Component = this.props.component;
     if (this.props.sessionChecked === false) {
       return <div>Checking User authentication data</div>;
