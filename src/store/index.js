@@ -1,13 +1,12 @@
 // @flow
 import Raven from 'raven-js';
-import { createStore, applyMiddleware } from 'redux';
+import {applyMiddleware, createStore} from 'redux';
+import createRavenMiddleware from 'raven-for-redux';
 import rootReducer from '../reducks';
 import authSessionWatcher from './authSessionWatcher';
-import createRavenMiddleware from 'raven-for-redux';
 
-Raven.config(
-  'https://da10d178ba254b0fabcf782c6ab4f979@sentry.io/1283524',
-).install();
+//TODO не отлавливает почему-то ошибку с typed-contract
+Raven.config(process.env.REACT_APP_sentry_DSN).install();
 
 const store = createStore(
   rootReducer,
