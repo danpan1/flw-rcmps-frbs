@@ -1,0 +1,13 @@
+{
+  "concurrentFiles": 1,
+  "globExcludePatterns": [
+    "node_modules/**"
+  ],
+  "flowCommandPath": "node_modules/flow-bin/flow-osx-v0.80.0/flow",
+  "globIncludePatterns": [
+    "src/**/*.js"
+  ],
+  "outputDir": "coverage-flow",
+  "threshold": 63,
+  "reportTypes": "text"
+}

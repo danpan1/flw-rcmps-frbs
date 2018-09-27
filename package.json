@@ -23,6 +23,7 @@
     "typed-contracts": "^1.1.0"
   },
   "scripts": {
+    "flow-coverage": "flow-coverage-report --config flow-coverage.json",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
@@ -32,9 +33,11 @@
     "deploy": "gh-pages -d build"
   },
   "devDependencies": {
+    "dotenv": "^6.0.0",
     "enzyme": "^3.6.0",
     "enzyme-adapter-react-16": "^1.5.0",
     "flow-bin": "^0.80.0",
+    "flow-coverage-report": "^0.6.0",
     "gh-pages": "^1.2.0",
     "prettier": "^1.14.2"
   }

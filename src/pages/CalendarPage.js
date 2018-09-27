@@ -1,9 +1,9 @@
 // @flow
 import React, { Component } from 'react';
 import DateAvailable from '../components/DateAvailable/DateAvailable';
-import BookingsList from './BookingsList';
+import BookingsList from '../components/BookingsList/BookingsList';
 
-class Calendar extends React.Component<{}> {
+class CalendarPage extends React.Component<{}> {
   render() {
     return (
       <div className="App">
@@ -21,4 +21,4 @@ class Calendar extends React.Component<{}> {
   }
 }
 
-export default Calendar;
+export default CalendarPage;

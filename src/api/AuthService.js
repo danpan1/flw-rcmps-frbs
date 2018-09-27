@@ -18,7 +18,7 @@ class AuthService {
   static doPasswordUpdatepassword = (password: string) =>
     auth.currentUser.updatePassword(password);
 
-  static signOut = () => auth.signOut();
+  static signOut = (): void => auth.signOut();
 
   static signInWithGoogle() {
     const googleProvider = new firebase.auth.GoogleAuthProvider();

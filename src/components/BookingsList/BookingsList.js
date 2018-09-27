@@ -1,12 +1,17 @@
 // @flow
 import React, { Component } from 'react';
-import BookingsService from '../api/BookingsService';
-import type { IBooking } from '../api/BookingsService';
+import BookingsService from '../../api/BookingsService';
+import type { IBooking } from '../../api/BookingsService';
+import { withProps } from 'recompose';
 
-class BookingsList extends Component<{}, { data: IBooking[] }> {
+type Props = {
+  loadBookings: () => Promise<IBooking[]>,
+};
+type State = { data: IBooking[] };
+export class BookingsList extends Component<Props, State> {
   state = { data: [] };
   componentDidMount() {
-    BookingsService.bookings.then(data => {
+    this.props.loadBookings().then(data => {
       console.log(data);
       this.setState({ data });
     });
@@ -29,4 +34,6 @@ class BookingsList extends Component<{}, { data: IBooking[] }> {
   }
 }
 
-export default BookingsList;
+export default withProps(() => ({
+  loadBookings: () => BookingsService.bookings,
+}))(BookingsList);

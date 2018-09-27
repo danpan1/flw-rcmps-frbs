@@ -1,3 +1,7 @@
+// Dotenv is a zero-dependency module that loads environment variables from a .env file into process.env.
+// Storing configuration in the environment separate from code is based on The Twelve-Factor App methodology.
+// https://12factor.net/config
+require('dotenv').config();
 module.exports = function(wallaby) {
 
   // Babel, jest-cli and some other modules may be located under
@@ -20,7 +24,10 @@ module.exports = function(wallaby) {
 
     env: {
       type: 'node',
-      runner: 'node'
+      runner: 'node',
+      //params: {
+        //env : "REACT_APP_apiKey=AIzaSyAZZRGFnOciwLZsSMjBlilnxfIlPcXXtc4;REACT_APP_authDomain=flw-rcmps-frbs.firebaseapp.com;REACT_APP_databaseURL=https://flw-rcmps-frbs.firebaseio.com;REACT_APP_projectId=flw-rcmps-frbs;REACT_APP_storageBucket=flw-rcmps-frbs.appspot.com;REACT_APP_messagingSenderId=985894078085;REACT_APP_VERSION=$npm_package_version;"
+      //}
     },
 
     compilers: {
