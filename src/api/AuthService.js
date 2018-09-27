@@ -1,9 +1,10 @@
 // @flow
 import { auth, firebase } from './firebase';
-import { authUserValidator } from '../flow-types';
-import type { AuthUserType } from '../flow-types';
+// import type { AuthUserType } from '../flow-types';
+import { validateAuthUser } from '../flow-types/authUserValidator';
+import type { AuthUserType } from '../flow-types/authUserValidator';
 
-type onAuthStateChangedFn = AuthUserType => void;
+type onAuthStateChangedFn = (AuthUserType | null | void) => void;
 class AuthService {
   static doCreateUserWithEmailAndPassword = (email: string, password: string) =>
     auth.createUserWithEmailAndPassword(email, password);
@@ -26,8 +27,7 @@ class AuthService {
   }
 
   static onAuthStateChanged(cb: onAuthStateChangedFn): void {
-    auth.onAuthStateChanged(authUser => {
-      //AuthUserType || null
+    auth.onAuthStateChanged((authUser: AuthUserType | null | void) => {
       let user = null;
       if (authUser) {
         user = {
@@ -35,7 +35,7 @@ class AuthService {
           email: authUser.email,
         };
       }
-      const validated = authUserValidator(user);
+      const validated = validateAuthUser(user);
       cb(validated);
     });
   }
