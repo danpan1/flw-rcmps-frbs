@@ -4,7 +4,7 @@ import format from 'date-fns/format';
 import type { Match } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import BookingsService from '../api/BookingsService';
-import type { IBooking } from '../api/BookingsService';
+import type { BookingType } from '../api/BookingsService';
 
 type Props = {
   match: Match,
@@ -12,7 +12,7 @@ type Props = {
 
 class NewBookingPage extends React.Component<Props> {
   handleSubmit = (
-    values: IBooking,
+    values: BookingType,
     { setSubmitting }: { setSubmitting: boolean => void },
   ) => {
     BookingsService.book(values).then(() => setSubmitting(false));
@@ -21,7 +21,7 @@ class NewBookingPage extends React.Component<Props> {
   render() {
     const timestamp = +this.props.match.params.date;
     const date = format(new Date(timestamp), 'DD MMMM YYYY HH:mm dddd');
-    const initValues: IBooking = {
+    const initValues: BookingType = {
       email: '',
       name: '',
       duration: '30',

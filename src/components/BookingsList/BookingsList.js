@@ -1,13 +1,13 @@
 // @flow
 import React, { Component } from 'react';
 import BookingsService from '../../api/BookingsService';
-import type { IBooking } from '../../api/BookingsService';
+import type { BookingType } from '../../api/BookingsService';
 import { withProps } from 'recompose';
 
 type Props = {
-  loadBookings: () => Promise<IBooking[]>,
+  loadBookings: () => Promise<BookingType[]>,
 };
-type State = { data: IBooking[] };
+type State = { data: BookingType[] };
 export class BookingsList extends Component<Props, State> {
   state = { data: [] };
   componentDidMount() {

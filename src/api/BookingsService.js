@@ -1,7 +1,7 @@
 // @flow
 import { db } from './firebase';
 
-export type IBooking = {
+export type BookingType = {
   id?: string,
   name: string,
   email: string,
@@ -16,7 +16,7 @@ class BookingsService {
     this.ref = 'bookings';
   }
 
-  get bookings(): Promise<IBooking[]> {
+  getBookings(): Promise<BookingType[]> {
     console.log('get bookings');
     return new Promise((resolve, reject) => {
       let items = [];
@@ -33,7 +33,7 @@ class BookingsService {
     });
   }
 
-  book(body: IBooking): Promise<void> {
+  book(body: BookingType): Promise<void> {
     return new Promise((resolve, reject) => {
       db.ref(`${this.ref}/`).push(body, error => {
         if (error) {
