@@ -1,5 +1,6 @@
 // @flow
-import addMinutes from 'date-fns/add_minutes';
+
+import { addMinutes } from 'date-fns';
 import format from 'date-fns/format';
 import parse from 'date-fns/parse';
 

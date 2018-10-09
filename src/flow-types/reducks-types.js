@@ -1,6 +1,9 @@
 /* eslint-disable no-use-before-define */
 // https://flow.org/en/docs/react/redux/
-import type {AppStateType} from "./index";
+// @flow
+
+
+import type {AppStateType} from 'flow-types/storesTypes';
 
 export type GetState = () => AppStateType;
 export type PromiseAction = Promise<Action>;

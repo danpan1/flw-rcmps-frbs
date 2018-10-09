@@ -1,47 +1,38 @@
 // @flow
+
+import type {
+  LoadBookingsFailAction,
+  LoadBookingsStartAction,
+  LoadBookingsSuccessAction,
+} from 'flow-types/actionsTypes';
+import type { BookingState } from 'flow-types/storesTypes';
+import type { BookingType } from '../api/BookingsService';
 /* eslint-disable no-underscore-dangle */
-import type {BookingType} from '../api/BookingsService';
 import BookingsService from '../api/BookingsService';
-import {FAIL, START, SUCCESS} from '../fetchConstants';
-import type {Dispatch, ThunkAction} from './reducks-types';
+import type { Dispatch, ThunkAction } from '../flow-types/reducks-types';
 
-export const moduleName = 'bookings';
-export const LOAD_BOOKINS = `@${moduleName}/LOAD_BOOKINGS`;
+// export const moduleName: 'bookings' = 'bookings';
+export const LOAD_BOOKINGS_FAIL: 'bookings/LOAD_BOOKINS_FAIL' = `bookings/LOAD_BOOKINS_FAIL`;
+export const LOAD_BOOKINGS_SUCCESS: 'bookings/LOAD_BOOKINS_SUCCESS' = `bookings/LOAD_BOOKINS_SUCCESS`;
+export const LOAD_BOOKINGS_START: 'bookings/LOAD_BOOKINS_START' = `bookings/LOAD_BOOKINS_START`;
 
-type ReduxFetchable = {
-  +_fetching: boolean,
-  +_error: boolean,
-  +_errorMessage: string,
-};
-
-type BookingStateType = {
-  +data: BookingType[],
-  ...$Exact<ReduxFetchable>,
-};
-
-type ReduxActionType = {
-  type: string,
-  payload: mixed,
-};
-
-const initialState: BookingStateType = {
+const initialState: BookingState = {
   data: [],
-
   _fetching: false,
   _error: false,
   _errorMessage: '',
 };
 
 export default function reducer(
-  state: BookingStateType = initialState,
-  action: ReduxActionType,
+  state: BookingState = initialState,
+  action: LoadBookingsFailAction | LoadBookingsSuccessAction,
 ) {
   const { type, payload } = action;
   switch (type) {
-    case LOAD_BOOKINS + START:
+    case LOAD_BOOKINGS_START:
       return { ...state, _fetching: true, _error: false };
 
-    case LOAD_BOOKINS + SUCCESS:
+    case LOAD_BOOKINGS_SUCCESS:
       return {
         data: payload,
         _fetching: false,
@@ -49,12 +40,12 @@ export default function reducer(
         _errorMessage: '',
       };
 
-    case LOAD_BOOKINS + FAIL:
+    case LOAD_BOOKINGS_FAIL:
       return {
         ...state,
         _fetching: false,
         _error: true,
-        _errorMessage: payload.message,
+        _errorMessage: payload,
       };
 
     default:
@@ -64,21 +55,31 @@ export default function reducer(
 
 // getters
 
-export const getIsLoading = state => state[moduleName]._fetching;
-export const getBookings = state => state[moduleName].data;
+// export const getIsLoading = (state: AppStateType) =>
+//   state[moduleName]._fetching;
+// export const getBookings = (state: AppStateType) => state[moduleName].data;
+
 
 // action creators
-
-export const loadBookingsFailAC = error => ({
-  type: LOAD_BOOKINS + FAIL,
-  payload: message,
+export const loadBookingsStartAC = (): LoadBookingsStartAction => ({
+  type: LOAD_BOOKINGS_START,
+});
+export const loadBookingsFailAC = (payload: mixed): LoadBookingsFailAction => ({
+  type: LOAD_BOOKINGS_FAIL,
+  payload,
+});
+export const loadBookingsSuccessAC = (
+  payload: BookingType[],
+): LoadBookingsSuccessAction => ({
+  type: LOAD_BOOKINGS_SUCCESS,
+  payload,
 });
 
 export const loadBookingsThunk: ThunkAction = () => (dispatch: Dispatch) => {
-  dispatch({ type: LOAD_BOOKINS + START });
+  dispatch(loadBookingsStartAC());
   BookingsService.getBookings()
-    .then(payload => dispatch({ type: LOAD_BOOKINS + SUCCESS, payload }))
+    .then(payload => dispatch(loadBookingsSuccessAC(payload)))
     .catch(error => {
-      dispatch({ type: LOAD_BOOKINS + FAIL, payload: error });
+      dispatch(loadBookingsFailAC(error));
     });
 };

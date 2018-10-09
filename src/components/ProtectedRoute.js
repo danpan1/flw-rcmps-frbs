@@ -1,11 +1,13 @@
-import React, { Component } from 'react';
+// @flow
+
+import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getSessionChecked, selectIsAuthorized } from '../reducks/session';
 import { CALENDAR, LOGIN } from '../routes';
 
-// TODO как здесь добавить типы?
-class ProtectedRoute extends Component {
+type Props = {};
+class ProtectedRoute extends React.Component<Props> {
   renderRoute = (args) => {
     const Component = this.props.component;
     if (this.props.sessionChecked === false) {

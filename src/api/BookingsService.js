@@ -1,4 +1,5 @@
 // @flow
+
 import { db } from './firebase';
 
 export type BookingType = {

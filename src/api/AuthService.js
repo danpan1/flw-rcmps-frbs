@@ -1,4 +1,5 @@
 // @flow
+
 import { auth, firebase } from './firebase';
 // import type { AuthUserType } from '../flow-types';
 import { validateAuthUser } from '../flow-types/authUserValidator';

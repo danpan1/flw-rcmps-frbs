@@ -1,6 +1,7 @@
 // @flow
+
 import React, { Component } from 'react';
-import BookingsService from '../../api/BookingsService';
+import {loadBookingsThunk} from 'reducks/bookings';
 import type { BookingType } from '../../api/BookingsService';
 import { withProps } from 'recompose';
 
@@ -11,10 +12,7 @@ type State = { data: BookingType[] };
 export class BookingsList extends Component<Props, State> {
   state = { data: [] };
   componentDidMount() {
-    this.props.loadBookings().then(data => {
-      console.log(data);
-      this.setState({ data });
-    });
+    this.props.loadBookingsThunk()
   }
 
   render() {
@@ -35,5 +33,5 @@ export class BookingsList extends Component<Props, State> {
 }
 
 export default withProps(() => ({
-  loadBookings: () => BookingsService.bookings,
+  loadBookingsThunk: () => loadBookingsThunk,
 }))(BookingsList);

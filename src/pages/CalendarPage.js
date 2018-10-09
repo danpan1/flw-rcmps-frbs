@@ -1,5 +1,6 @@
 // @flow
-import React, { Component } from 'react';
+
+import React from 'react';
 import DateAvailable from '../components/DateAvailable/DateAvailable';
 import BookingsList from '../components/BookingsList/BookingsList';
 

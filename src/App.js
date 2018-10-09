@@ -1,4 +1,5 @@
 // @flow
+
 import React from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
@@ -6,8 +7,7 @@ import CalendarPage from './pages/CalendarPage';
 import NewBookingPage from './pages/NewBookingPage';
 import Navigation from './Navigation';
 import ProtectedRoute from './components/ProtectedRoute';
-import {CALENDAR, LOGIN, NEW, WIZARD} from './routes';
-import WizardForm from "./wizard-form/WizardForm";
+import {CALENDAR, LOGIN, NEW} from './routes';
 
 const App = () => (
   <div className="App">
@@ -15,7 +15,6 @@ const App = () => (
     <Switch>
       <ProtectedRoute exact path={CALENDAR} component={CalendarPage} />
       <ProtectedRoute exact path={LOGIN} component={LoginPage} isAuthRoute />
-      <ProtectedRoute exact path={WIZARD} component={WizardForm} isAuthRoute />
       <Route exact path={`${NEW}/:date`} component={NewBookingPage} />
     </Switch>
   </div>

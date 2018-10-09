@@ -1,4 +1,5 @@
 // @flow
+
 import * as t from "typed-contracts";
 
 type Validator<T> = mixed => t.ValidationError | T;

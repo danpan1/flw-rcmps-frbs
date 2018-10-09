@@ -1,11 +1,21 @@
-[ignore]
-
 [include]
+./node_modules/date-fns/
 
 [libs]
+
+[ignore]
 
 [lints]
 
 [options]
+esproposal.decorators=ignore
+module.name_mapper='^flow-types/\(.*\)$' -> '<PROJECT_ROOT>/src/flow-types/\1'
+module.name_mapper='^pages/\(.*\)$' -> '<PROJECT_ROOT>/src/pages/\1'
+module.name_mapper='^reducks/\(.*\)$' -> '<PROJECT_ROOT>/src/reducks/\1'
+module.name_mapper='^components/\(.*\)$' -> '<PROJECT_ROOT>/src/components/\1'
+module.name_mapper='^assets/\(.*\)$' -> '<PROJECT_ROOT>/src/assets/\1'
+module.name_mapper='^api/\(.*\)$' -> '<PROJECT_ROOT>/src/api/\1'
+module.name_mapper='^store/\(.*\)$' -> '<PROJECT_ROOT>/src/store/\1'
+module.name_mapper='^utils/\(.*\)$' -> '<PROJECT_ROOT>/src/utils/\1'
 
 [strict]

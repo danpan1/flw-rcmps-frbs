@@ -1,4 +1,5 @@
 // @flow
+
 import Raven from 'raven-js';
 import {applyMiddleware, createStore} from 'redux';
 import createRavenMiddleware from 'raven-for-redux';

@@ -1,4 +1,5 @@
 // @flow
+
 import * as React from 'react';
 import AuthService from '../api/AuthService';
 import GoogleButton from 'react-google-button';

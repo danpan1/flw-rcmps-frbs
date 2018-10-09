@@ -1,4 +1,5 @@
 // @flow
+
 import * as t from 'typed-contracts';
 import validate, { type ExtractType } from './validateTypes';
 

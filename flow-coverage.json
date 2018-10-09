@@ -1,13 +1,16 @@
 {
   "concurrentFiles": 1,
   "globExcludePatterns": [
-    "node_modules/**"
+    "node_modules/**",
+    "src/**/*.test.js",
+    "src/setupTests.js",
+    "src/utils/dataForTest.js"
   ],
-  "flowCommandPath": "node_modules/flow-bin/flow-osx-v0.80.0/flow",
+  "flowCommandPath": "node_modules/flow-bin/flow-osx-v0.82.0/flow",
   "globIncludePatterns": [
     "src/**/*.js"
   ],
   "outputDir": "coverage-flow",
-  "threshold": 63,
+  "threshold": 100,
   "reportTypes": "text"
 }
