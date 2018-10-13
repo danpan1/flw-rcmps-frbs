@@ -1,10 +1,10 @@
 // @flow
 
+import type { Dispatch } from 'flow-types/reducks-types';
 import { authUserAC } from '../reducks/session';
 import AuthService from '../api/AuthService';
-import { Store } from 'redux';
 
-export default function authSessionMiddleware(store: Store) {
+export default function authSessionMiddleware(store: { dispatch: Dispatch }) {
   AuthService.onAuthStateChanged(authUser => {
     store.dispatch(authUserAC(authUser));
   });

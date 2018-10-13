@@ -8,6 +8,7 @@
 [lints]
 
 [options]
+include_warnings=true
 esproposal.decorators=ignore
 module.name_mapper='^flow-types/\(.*\)$' -> '<PROJECT_ROOT>/src/flow-types/\1'
 module.name_mapper='^pages/\(.*\)$' -> '<PROJECT_ROOT>/src/pages/\1'

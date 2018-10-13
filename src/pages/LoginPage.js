@@ -1,5 +1,7 @@
 // @flow
 
+import type { Form as FormType } from 'antd';
+import type { AuthUserType } from 'flow-types/authUserValidator';
 import * as React from 'react';
 import AuthService from '../api/AuthService';
 import GoogleButton from 'react-google-button';
@@ -16,19 +18,17 @@ import type { RouterHistory } from 'react-router-dom';
 import type { FormProps } from 'redux-form/lib/types';
 import type { FieldProps } from 'redux-form/lib/FieldProps.types';
 
-const FromItem = Form.Item;
-// todo почему не подсвечивает signInWithGoogle как отсутствующий в пропах
+//TODO что не так с flow?
+// const FromItem: React.ElementType = (Form.Item: FormType.Item);
+const FromItem: React.ElementType = (Form.Item);
 type Props = {
   ...$Exact<FormProps>,
   history: RouterHistory,
-  // TODO как указать для signInWithGoogle что она должна быть именно от AuthService.signInWithGoogle
-  // todo периодечски Flow отрубается, весьма неприятно
   signInWithGoogle: () => void,
 };
-type ReduxFormFieldFn = (props: FieldProps) => React.Node;
 
 // AntInputReduxFormAdaptor
-const AntInputRFA: ReduxFormFieldFn = ({
+const AntInputRFA: React.StatelessFunctionalComponent<FieldProps> = ({
   input,
   meta: { touched, error, warning },
   ...rest
@@ -40,11 +40,11 @@ const AntInputRFA: ReduxFormFieldFn = ({
   </FromItem>
 );
 
-const Comp3: ReduxFormFieldFn = ({ input }) => (
+const Comp3: React.StatelessFunctionalComponent<FieldProps> = ({ input }) => (
   <Checkbox {...input}>Remember me</Checkbox>
 );
 
-const handleSubmit = async values => {
+const handleSubmit = async (values: AuthUserType) => {
   console.log('LoginPage handleSubmit', values);
 };
 
@@ -93,6 +93,8 @@ class LoginPage extends React.Component<Props> {
     );
   }
 }
+
+// TODO flow как тут заюзать
 const enhance = compose(
   withProps(props => ({
     onSubmit: handleSubmit,

@@ -7,16 +7,17 @@ import './assets/index.css';
 import store from './store';
 import Routes from './App';
 import { Provider } from 'react-redux';
-// import registerServiceWorker from './registerServiceWorker';
 import 'antd/dist/antd.css';
 
+const root = document.getElementById('root');
 
-ReactDOM.render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <Routes />
-    </BrowserRouter>
-  </Provider>,
-  document.getElementById('root'),
-);
-// registerServiceWorker();
+if (root !== null) {
+  ReactDOM.render(
+    <Provider store={store}>
+      <BrowserRouter>
+        <Routes />
+      </BrowserRouter>
+    </Provider>,
+    root,
+  );
+}

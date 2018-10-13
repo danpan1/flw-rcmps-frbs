@@ -8,7 +8,7 @@ import {AUTH_USER_SET} from 'reducks/session';
 // ACTION CREATORS
 export type AuthUserAction = {
   type: typeof AUTH_USER_SET,
-  payload: AuthUserType,
+  payload: AuthUserType | void | null,
 };
 //TODO сделать тип LOAD_BOOKINS + SUCCESS
 export type LoadBookingsFailAction = {

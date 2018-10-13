@@ -53,13 +53,6 @@ export default function reducer(
   }
 }
 
-// getters
-
-// export const getIsLoading = (state: AppStateType) =>
-//   state[moduleName]._fetching;
-// export const getBookings = (state: AppStateType) => state[moduleName].data;
-
-
 // action creators
 export const loadBookingsStartAC = (): LoadBookingsStartAction => ({
   type: LOAD_BOOKINGS_START,

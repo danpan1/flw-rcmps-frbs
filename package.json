@@ -15,10 +15,11 @@
     "react-google-button": "^0.5.3",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.5",
+    "react-scripts": "2.0.4",
     "recompose": "^0.30.0",
     "redux": "^4.0.0",
     "redux-form": "^7.4.2",
+    "redux-thunk": "^2.3.0",
     "reselect": "^3.0.1",
     "typed-contracts": "^1.1.0"
   },
@@ -28,8 +29,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "flow": "flow",
+    "lint": "eslint src",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
+    "precommit": "npm run flow && npm run lint",
     "deploy": "gh-pages -d build"
   },
   "devDependencies": {
@@ -40,5 +43,11 @@
     "flow-coverage-report": "^0.6.0",
     "gh-pages": "^1.2.0",
     "prettier": "^1.14.2"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

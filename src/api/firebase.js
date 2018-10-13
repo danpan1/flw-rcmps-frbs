@@ -14,6 +14,7 @@ const config = {
 };
 
 if (!firebase.apps.length) {
+  // TODO flow error
   firebase.initializeApp(config);
 }
 

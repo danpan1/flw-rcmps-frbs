@@ -14,9 +14,9 @@ const INITIAL_STATE: SessionState = {
   sessionChecked: false,
 };
 
-export const authUserAC = (payload: AuthUserType): AuthUserAction => ({
+export const authUserAC = (payload: AuthUserType | void | null): AuthUserAction => ({
   type: AUTH_USER_SET,
-  payload,
+  payload: payload,
 });
 
 // REDUCER
@@ -36,6 +36,7 @@ export default function sessionReducer(
       return applySetAuthUser(state, action);
     }
     default:
+      // eslint-disable-next-line no-unused-expressions
       (action: empty);
       return state;
   }
@@ -47,4 +48,7 @@ export const getUser = (state: AppStateType) => state[moduleName].authUser;
 export const getSessionChecked = (state: AppStateType) =>
   state[moduleName].sessionChecked;
 export const selectUser = createSelector(getUser, user => user);
-export const selectIsAuthorized = createSelector(selectUser, user => !!user);
+export const selectIsAuthorized = createSelector(
+  selectUser,
+  (user: AuthUserType) => !!user,
+);

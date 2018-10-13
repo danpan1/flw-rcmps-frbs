@@ -6,10 +6,6 @@ import { makeArrayOfDates } from '../../utils/makeArrayOfDates';
 import type { IMakeArrayOfDatesProps } from '../../utils/makeArrayOfDates';
 import { Link } from 'react-router-dom';
 
-//TODO not working autocomplete for webstorm
-// type Props = {
-//   ...$Exact<IMakeArrayOfDatesProps>,
-// };
 function DateAvailable(props: IMakeArrayOfDatesProps) {
   console.log('DateAvailable');
   const { startDay } = props; /* ? */

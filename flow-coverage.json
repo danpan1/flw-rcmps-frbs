@@ -10,7 +10,7 @@
   "globIncludePatterns": [
     "src/**/*.js"
   ],
-  "outputDir": "coverage-flow",
-  "threshold": 100,
-  "reportTypes": "text"
+  "outputDir": "./coverage-flow",
+  "threshold": 95,
+  "reportTypes": "html"
 }

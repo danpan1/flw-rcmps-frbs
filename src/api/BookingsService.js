@@ -7,6 +7,7 @@ export type BookingType = {
   name: string,
   email: string,
   date: string,
+  duration: string,
   timestamp: number,
 };
 
@@ -23,6 +24,7 @@ class BookingsService {
       let items = [];
       const ref = db.ref(this.ref);
       ref.once('value', function(snapshot) {
+        // TODO flow error
         snapshot.forEach(function(childSnapshot) {
           const childKey = childSnapshot.key;
           const childData = childSnapshot.val();

@@ -34,7 +34,7 @@ class NewBookingPage extends React.Component<Props> {
         <h1>NewBookingPage {date}</h1>
         <Formik
           initialValues={initValues}
-          validate={values => {
+          validate={(values: BookingType) => {
             let errors = {};
             if (!values.email) {
               errors.email = 'Required';
@@ -47,7 +47,15 @@ class NewBookingPage extends React.Component<Props> {
           }}
           onSubmit={this.handleSubmit}
         >
-          {({ errors, touched, isSubmitting }) => (
+          {({
+            errors,
+            touched,
+            isSubmitting,
+          }: {
+            errors: BookingType,
+            touched: BookingType,
+            isSubmitting: boolean,
+          }) => (
             <Form>
               <Field type="email" name="email" />
               {errors.email && touched.email && errors.email}
