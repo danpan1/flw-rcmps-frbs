@@ -1,4 +1,3 @@
-import React from 'react';
 import { makeArrayOfDates } from './makeArrayOfDates';
 import { defaultProps } from './dataForTest';
 

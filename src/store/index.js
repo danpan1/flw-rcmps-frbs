@@ -1,5 +1,3 @@
-// @flow
-
 import Raven from 'raven-js';
 import thunk from 'redux-thunk';
 import { applyMiddleware, compose, createStore } from 'redux';

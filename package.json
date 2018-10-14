@@ -32,7 +32,7 @@
     "lint": "eslint src",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "precommit": "npm run flow && npm run lint",
+    "precommit": "npm run flow && npm run lint && npm run flow-coverage && npm t",
     "deploy": "gh-pages -d build"
   },
   "devDependencies": {

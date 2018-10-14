@@ -1,6 +1,5 @@
 // @flow
 
-import type { Form as FormType } from 'antd';
 import type { AuthUserType } from 'flow-types/authUserValidator';
 import * as React from 'react';
 import AuthService from '../api/AuthService';
@@ -96,7 +95,7 @@ class LoginPage extends React.Component<Props> {
 
 // TODO flow как тут заюзать
 const enhance = compose(
-  withProps(props => ({
+  withProps(() => ({
     onSubmit: handleSubmit,
     signInWithGoogle: AuthService.signInWithGoogle,
   })),

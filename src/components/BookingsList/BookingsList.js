@@ -4,14 +4,18 @@ import type { Dispatch } from 'flow-types/reducks-types';
 import * as React from 'react';
 import connect from 'react-redux/es/connect/connect';
 import { getBookings, loadBookingsThunk } from 'reducks/bookings';
-import type { BookingType } from 'api/BookingsService';
+import type { AppStateType } from 'flow-types/storesTypes';
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   loadBookingsThunk: () => dispatch(loadBookingsThunk()),
 });
+const mapDataToProps = (state: AppStateType) => ({
+  bookings: getBookings(state),
+});
+type DataFromRedux = $Exact<$Call<typeof mapDataToProps, AppStateType>>;
 type MethodsFromRedux = $Exact<$Call<typeof mapDispatchToProps, Dispatch>>;
 type Props = {
-  bookings: BookingType[],
+  ...DataFromRedux,
   ...MethodsFromRedux,
 };
 export class BookingsList extends React.Component<Props> {
@@ -36,10 +40,10 @@ export class BookingsList extends React.Component<Props> {
   }
 }
 
-type PropsFromParent = $Exact<$Diff<Props, MethodsFromRedux>>;
+type PropsFromParent = $Exact<
+  $Diff<Props, { ...MethodsFromRedux, ...DataFromRedux }>,
+>;
 export default (connect(
-  state => ({
-    bookings: getBookings(state),
-  }),
+  mapDataToProps,
   mapDispatchToProps,
 )(BookingsList): React.ComponentType<PropsFromParent>);

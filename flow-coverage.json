@@ -3,6 +3,8 @@
   "globExcludePatterns": [
     "node_modules/**",
     "src/**/*.test.js",
+    "src/index.js",
+    "src/store/index.js",
     "src/setupTests.js",
     "src/utils/dataForTest.js"
   ],

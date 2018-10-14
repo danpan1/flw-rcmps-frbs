@@ -25,7 +25,7 @@ class BookingsService {
       const ref = db.ref(this.ref);
       ref.once('value', function(snapshot) {
         // TODO flow error
-        snapshot.forEach(function(childSnapshot) {
+        (snapshot:any).forEach(function(childSnapshot) {
           const childKey = childSnapshot.key;
           const childData = childSnapshot.val();
           const item = { id: childKey, ...childData };
