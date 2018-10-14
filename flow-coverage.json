@@ -13,6 +13,6 @@
     "src/**/*.js"
   ],
   "outputDir": "./coverage-flow",
-  "threshold": 95,
+  "threshold": 94,
   "reportTypes": "html"
 }

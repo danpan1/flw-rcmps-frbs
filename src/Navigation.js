@@ -7,13 +7,17 @@ import { connect } from 'react-redux';
 import AuthService from './api/AuthService';
 import { selectIsAuthorized } from './reducks/session';
 import { CALENDAR, LOGIN } from './routes';
+import type {
+  ConnectedComponentType,
+  DataFromReduxType,
+} from 'flow-types/reducks-types';
 
 const mapStateToProps = (state: AppStateType) => ({
   isAuthorized: selectIsAuthorized(state),
 });
-type mapDataToProps = $Exact<$Call<typeof mapStateToProps, AppStateType>>;
+type DataFromRedux = DataFromReduxType<typeof mapStateToProps>;
 type Props = {
-  ...mapDataToProps,
+  ...DataFromRedux,
 };
 const Navigation: React.StatelessFunctionalComponent<Props> = ({
   isAuthorized,
@@ -31,7 +35,8 @@ const NavigationAuth = () => (
 
 const NavigationNonAuth = () => <nav />;
 
-type PropsFromParent = $Exact<$Diff<Props, mapDataToProps>>;
-export default (connect(mapStateToProps)(Navigation): React.ComponentType<
-  PropsFromParent,
+export default (connect(mapStateToProps)(Navigation): ConnectedComponentType<
+  Props,
+  DataFromRedux,
+  {},
 >);

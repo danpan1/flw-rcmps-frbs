@@ -1,6 +1,11 @@
 // @flow
 
-import type { Dispatch } from 'flow-types/reducks-types';
+import type {
+  ConnectedComponentType,
+  DataFromReduxType,
+  Dispatch,
+  MethodsFromReduxType,
+} from 'flow-types/reducks-types';
 import * as React from 'react';
 import connect from 'react-redux/es/connect/connect';
 import { getBookings, loadBookingsThunk } from 'reducks/bookings';
@@ -12,8 +17,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 const mapDataToProps = (state: AppStateType) => ({
   bookings: getBookings(state),
 });
-type DataFromRedux = $Exact<$Call<typeof mapDataToProps, AppStateType>>;
-type MethodsFromRedux = $Exact<$Call<typeof mapDispatchToProps, Dispatch>>;
+type DataFromRedux = DataFromReduxType<typeof mapDataToProps>;
+type MethodsFromRedux = MethodsFromReduxType<typeof mapDispatchToProps>;
 type Props = {
   ...DataFromRedux,
   ...MethodsFromRedux,
@@ -40,10 +45,11 @@ export class BookingsList extends React.Component<Props> {
   }
 }
 
-type PropsFromParent = $Exact<
-  $Diff<Props, { ...MethodsFromRedux, ...DataFromRedux }>,
->;
 export default (connect(
   mapDataToProps,
   mapDispatchToProps,
-)(BookingsList): React.ComponentType<PropsFromParent>);
+)(BookingsList): ConnectedComponentType<
+  Props,
+  DataFromRedux,
+  MethodsFromRedux,
+>);

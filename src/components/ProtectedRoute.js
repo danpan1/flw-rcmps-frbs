@@ -1,19 +1,22 @@
 // @flow
 
-import type { AppStateType } from 'flow-types/storesTypes';
 import * as React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import type { LocationShape, ContextRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getSessionChecked, selectIsAuthorized } from '../reducks/session';
 import { CALENDAR, LOGIN } from '../routes';
+import type {
+  ConnectedComponentType,
+  DataFromReduxType,
+} from 'flow-types/reducks-types';
 
 const mapStateToProps = state => ({
   isAuthorized: selectIsAuthorized(state),
   sessionChecked: getSessionChecked(state),
 });
 
-type PropsFromRedux = $Call<typeof mapStateToProps, AppStateType>;
+type DataFromRedux = DataFromReduxType<typeof mapStateToProps>;
 
 type RouteProps = {|
   component: React.ComponentType<*>,
@@ -27,7 +30,7 @@ type RouteProps = {|
 
 type Props = {
   ...RouteProps,
-  ...$Exact<PropsFromRedux>,
+  ...DataFromRedux,
   isAuthRoute?: boolean,
 };
 
@@ -64,8 +67,6 @@ class ProtectedRoute extends React.Component<Props> {
   }
 }
 
-type PropsFromParent = $Exact<$Diff<Props, PropsFromRedux>>;
-
-export default (connect(mapStateToProps)(ProtectedRoute): React.ComponentType<
-  PropsFromParent,
->);
+export default (connect(mapStateToProps)(
+  ProtectedRoute,
+): ConnectedComponentType<Props, DataFromRedux, {}>);

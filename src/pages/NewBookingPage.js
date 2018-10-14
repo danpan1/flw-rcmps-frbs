@@ -7,15 +7,19 @@ import { Formik, Form, Field } from 'formik';
 import type { BookingType } from 'api/BookingsService';
 import connect from 'react-redux/es/connect/connect';
 import { bookThunk } from 'reducks/bookings';
-import type { Dispatch } from 'flow-types/reducks-types';
+import type {
+  ConnectedComponentType,
+  Dispatch,
+  MethodsFromReduxType,
+} from 'flow-types/reducks-types';
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  bookThunk: (values) => dispatch(bookThunk(values)),
+  bookThunk: values => dispatch(bookThunk(values)),
 });
-type MethodsFromRedux = $Exact<$Call<typeof mapDispatchToProps, Dispatch>>;
+type MethodsFromRedux = MethodsFromReduxType<typeof mapDispatchToProps>;
 type Props = {
   ...MethodsFromRedux,
-  match: Match
+  match: Match,
 };
 
 class NewBookingPage extends React.Component<Props> {
@@ -23,7 +27,7 @@ class NewBookingPage extends React.Component<Props> {
     values: BookingType,
     { setSubmitting }: { setSubmitting: boolean => void },
   ) => {
-    this.props.bookThunk(values).then(()=>setSubmitting(false))
+    this.props.bookThunk(values).then(() => setSubmitting(false));
   };
 
   render() {
@@ -81,8 +85,7 @@ class NewBookingPage extends React.Component<Props> {
   }
 }
 
-type PropsFromParent = $Exact<$Diff<Props, MethodsFromRedux>>;
 export default (connect(
   () => ({}),
   mapDispatchToProps,
-)(NewBookingPage): React.ComponentType<PropsFromParent>);
+)(NewBookingPage): ConnectedComponentType<Props, {}, MethodsFromRedux>);

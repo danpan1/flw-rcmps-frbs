@@ -21,10 +21,13 @@
     "redux-form": "^7.4.2",
     "redux-thunk": "^2.3.0",
     "reselect": "^3.0.1",
+    "source-map-explorer": "^1.6.0",
     "typed-contracts": "^1.1.0"
   },
   "scripts": {
-    "flow-coverage": "flow-coverage-report --config flow-coverage.json",
+    "coverage:flow": "flow-coverage-report --config flow-coverage.json",
+    "analyze": "source-map-explorer build/static/js/1*.js",
+    "coverage:test": "npm t -- --coverage",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
@@ -32,7 +35,7 @@
     "lint": "eslint src",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "precommit": "npm run flow && npm run lint && npm run flow-coverage && npm t",
+    "precommit": "npm run flow && npm run lint && npm run coverage:flow && npm t && npm run coverage:test",
     "deploy": "gh-pages -d build"
   },
   "devDependencies": {
@@ -45,9 +48,22 @@
     "prettier": "^1.14.2"
   },
   "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+    "last 2 Chrome versions"
+  ],
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
+      }
+    },
+    "coverageReporters": [
+      "text"
+    ]
+  }
 }

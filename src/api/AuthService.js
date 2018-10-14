@@ -1,9 +1,8 @@
 // @flow
 
 import { auth, firebase } from './firebase';
-// import type { AuthUserType } from '../flow-types';
-import { validateAuthUser } from '../flow-types/authUserValidator';
-import type { AuthUserType } from '../flow-types/authUserValidator';
+import { validateAuthUser } from 'flow-types/authUserValidator';
+import type { AuthUserType } from 'flow-types/authUserValidator';
 
 type onAuthStateChangedFn = (AuthUserType | void) => void;
 class AuthService {
