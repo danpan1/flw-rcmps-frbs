@@ -30,7 +30,7 @@ class AuthService {
   }
 
   static onAuthStateChanged(cb: onAuthStateChangedFn): void {
-    auth.onAuthStateChanged((authUser: AuthUserType | null | void) => {
+    auth.onAuthStateChanged((authUser: ?AuthUserType) => {
       let user;
       if (authUser) {
         user = {

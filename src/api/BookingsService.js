@@ -24,12 +24,10 @@ class BookingsService {
       let items = [];
       const ref = db.ref(this.ref);
       ref.once('value', function(snapshot) {
-        // TODO flow error
-        (snapshot:any).forEach(function(childSnapshot) {
-          const childKey = childSnapshot.key;
-          const childData = childSnapshot.val();
-          const item = { id: childKey, ...childData };
-          items.push(item);
+        snapshot.forEach(function(childSnapshot) {
+          items.push({ id: childSnapshot.key, ...childSnapshot.val() });
+          // TODO flow error
+          return true;
         });
         resolve(items);
       });

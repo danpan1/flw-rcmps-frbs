@@ -13,6 +13,7 @@
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
     "react-google-button": "^0.5.3",
+    "react-loadable": "^5.5.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.0.4",
@@ -35,7 +36,7 @@
     "lint": "eslint src",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
-    "precommit": "npm run flow && npm run lint && npm run coverage:flow && npm t && npm run coverage:test",
+    "precommit": "npm run flow && npm run lint && npm run coverage:flow && npm run coverage:test",
     "deploy": "gh-pages -d build"
   },
   "devDependencies": {

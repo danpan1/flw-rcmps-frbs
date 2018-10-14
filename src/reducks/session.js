@@ -50,5 +50,5 @@ export const getSessionChecked = (state: AppStateType) =>
 export const selectUser = createSelector(getUser, user => user);
 export const selectIsAuthorized = createSelector(
   selectUser,
-  (user: AuthUserType) => !!user,
+  (user: AuthUserType):boolean => !!user,
 );

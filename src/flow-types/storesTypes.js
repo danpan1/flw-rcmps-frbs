@@ -2,7 +2,7 @@
 
 import type { BookingType } from 'api/BookingsService';
 import type { AuthUserType } from 'flow-types/authUserValidator';
-import type { ReduxFetchable } from 'flow-types/ReduxFetchable';
+import type { ReduxFetchable } from 'flow-types/reducks-types';
 
 export type SessionState = {
   authUser: AuthUserType | null,
