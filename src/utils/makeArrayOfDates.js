@@ -11,8 +11,8 @@ export type IMakeArrayOfDatesProps = {
   endTime: string,
 };
 const getTimestamp = ({ day, time }: { day: Date, time: string }) => {
-  const getReadableDate = format(new Date(day), 'MM.DD.YYYY');
-  const setDateTime = parse(`${getReadableDate} ${time}`);
+  const getReadableDate = format(new Date(day), 'MM.dd.yyyy');//?
+  const setDateTime = parse(`${getReadableDate} ${time}`, 'MM.dd.yyyy HH:mm', new Date()); // ?
   return setDateTime.getTime(); // ?
 };
 

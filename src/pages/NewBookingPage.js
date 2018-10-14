@@ -21,7 +21,7 @@ class NewBookingPage extends React.Component<Props> {
 
   render() {
     const timestamp = +this.props.match.params.date;
-    const date = format(new Date(timestamp), 'DD MMMM YYYY HH:mm dddd');
+    const date = format(new Date(timestamp), 'dd MMMM yyyy HH:mm dddd');
     const initValues: BookingType = {
       email: '',
       name: '',
