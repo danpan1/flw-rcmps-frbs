@@ -5,7 +5,7 @@ import type {
   LoadBookingsStartAction,
   LoadBookingsSuccessAction,
 } from 'flow-types/actionsTypes';
-import type { BookingState } from 'flow-types/storesTypes';
+import type { AppStateType, BookingState } from 'flow-types/storesTypes';
 import type { BookingType } from '../api/BookingsService';
 /* eslint-disable no-underscore-dangle */
 import BookingsService from '../api/BookingsService';
@@ -53,6 +53,9 @@ export default function reducer(
   }
 }
 
+// getters
+export const getBookings = (state: AppStateType) => state.bookings.data;
+
 // action creators
 export const loadBookingsStartAC = (): LoadBookingsStartAction => ({
   type: LOAD_BOOKINGS_START,
@@ -68,11 +71,17 @@ export const loadBookingsSuccessAC = (
   payload,
 });
 
-export const loadBookingsThunk: ThunkAction = () => (dispatch: Dispatch) => {
+export const loadBookingsThunk: () => ThunkAction = () => (
+  dispatch: Dispatch,
+) => {
   dispatch(loadBookingsStartAC());
   BookingsService.getBookings()
     .then(payload => dispatch(loadBookingsSuccessAC(payload)))
     .catch(error => {
       dispatch(loadBookingsFailAC(error));
     });
+};
+
+export const bookThunk: (values: BookingType) => ThunkAction = values => () => {
+  return BookingsService.book(values);
 };
